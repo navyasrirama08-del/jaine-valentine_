@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>For Jaine 💖</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      height: 100vh;
+      background: linear-gradient(135deg, #ffd6e8, #fff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .container {
+      background: #fffafc;
+      padding: 32px 36px;
+      border-radius: 30px;
+      max-width: 440px;
+      text-align: center;
+      box-shadow: 0 25px 45px rgba(255, 105, 180, 0.28);
+      position: relative;
+      z-index: 2;
+    }
+
+    h1 {
+      font-family: 'Pacifico', cursive;
+      color: #ff4f9a;
+      font-size: 2.4rem;
+      margin-bottom: 14px;
+    }
+
+    .quote {
+      font-size: 0.9rem;
+      color: #555;
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+
+    .postcard {
+      background: #fff;
+      border-radius: 18px;
+      padding: 20px;
+      margin: 18px 0 22px;
+      border: 2px dashed #ffc1da;
+      text-align: left;
+      font-family: 'Playfair Display', serif;
+      color: #444;
+      line-height: 1.6;
+      position: relative;
+    }
+
+    .postcard::before {
+      content: "💌";
+      position: absolute;
+      top: -12px;
+      left: 16px;
+      background: #fffafc;
+      padding: 4px 8px;
+      font-size: 1.1rem;
+    }
+
+    .signature {
+      margin-top: 14px;
+      font-style: italic;
+      color: #ff4f9a;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      margin-top: 16px;
+    }
+
+    button {
+      border: none;
+      padding: 14px 26px;
+      border-radius: 999px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    #yesBtn {
+      background: linear-gradient(135deg, #ff5fa2, #ff8acb);
+      color: white;
+      box-shadow: 0 10px 20px rgba(255, 79, 154, 0.4);
+    }
+
+    #yesBtn:hover {
+      transform: scale(1.1);
+    }
+
+    #noBtn {
+      background: #f2f2f2;
+      color: #555;
+    }
+
+    .music-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #ff8acb;
+      color: white;
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      box-shadow: 0 10px 20px rgba(255, 79, 154, 0.4);
+      z-index: 5;
+    }
+
+    .heart, .sparkle {
+      position: absolute;
+      animation: floatUp 7s linear infinite;
+      opacity: 0.6;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0); opacity: 0; }
+      20% { opacity: 0.6; }
+      100% { transform: translateY(-100vh); opacity: 0; }
+    }
+
+    .success {
+      font-family: 'Pacifico', cursive;
+      color: #ff4f9a;
+      font-size: 2.2rem;
+      animation: pop 0.6s ease;
+    }
+
+    @keyframes pop {
+      0% { transform: scale(0.7); }
+      100% { transform: scale(1); }
+    }
+  </style>
+</head>
+
+<body>
+
+  <audio id="bgm" loop>
+    <source src="https://files.catbox.moe/3r6r4y.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="container" id="card">
+    <h1>Jaine, will you be my Valentine? 💘</h1>
+
+    <div class="quote">
+      Hey Nana, do you remember the first time we met?<br>
+      I believe in things like fate. So I think it was fate.<br>
+      <span style="font-size: 0.75rem;">– Hachi 💕</span>
+    </div>
+
+    <div class="postcard">
+      Dear Jaine,<br><br>
+      Somewhere between laughter, late talks, and the quiet moments,
+      you became my favorite place to be. You feel like home in a way
+      I never knew I was searching for. If love had a shape, I think
+      it would look a lot like us.<br><br>
+
+      Thank you for being in my life. Be my Valentine, please? 💖
+
+      <div class="signature">
+        With all my heart,<br>
+        Yours
+      </div>
+    </div>
+
+    <div class="buttons">
+      <button id="yesBtn">YES 💖</button>
+      <button id="noBtn">No 🙄</button>
+    </div>
+  </div>
+
+  <div class="music-btn" id="musicToggle">🎶 Play music</div>
+
+  <script>
+    const noBtn = document.getElementById('noBtn');
+    const yesBtn = document.getElementById('yesBtn');
+    const card = document.getElementById('card');
+    const bgm = document.getElementById('bgm');
+    const musicToggle = document.getElementById('musicToggle');
+    let playing = false;
+
+    musicToggle.addEventListener('click', () => {
+      if (!playing) {
+        bgm.play();
+        musicToggle.textContent = "🔇 Mute";
+      } else {
+        bgm.pause();
+        musicToggle.textContent = "🎶 Play music";
+      }
+      playing = !playing;
+    });
+
+    const noTexts = [
+      "Are you sure? 😳",
+      "Think again 🥺",
+      "That hurts 💔",
+      "Illegal 😤",
+      "You know you want to 😏"
+    ];
+
+    noBtn.addEventListener('mouseover', () => {
+      const x = Math.random() * 200 - 100;
+      const y = Math.random() * 150 - 75;
+      noBtn.style.transform = `translate(${x}px, ${y}px)`;
+      noBtn.textContent = noTexts[Math.floor(Math.random() * noTexts.length)];
+    });
+
+    yesBtn.addEventListener('click', () => {
+      bgm.play();
+      card.innerHTML = `
+        <div class="success">
+          YAY Jaine 💞<br>
+          My Valentine forever 💖
+        </div>
+      `;
+      confetti();
+    });
+
+    setInterval(() => {
+      const el = document.createElement('div');
+      el.className = Math.random() > 0.5 ? 'heart' : 'sparkle';
+      el.textContent = Math.random() > 0.5 ? '💖' : '✨';
+      el.style.left = Math.random() * 100 + 'vw';
+      el.style.fontSize = Math.random() * 20 + 12 + 'px';
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 7000);
+    }, 420);
+
+    function confetti() {
+      for (let i = 0; i < 100; i++) {
+        const c = document.createElement('div');
+        c.style.position = 'absolute';
+        c.style.width = '8px';
+        c.style.height = '8px';
+        c.style.background = `hsl(${Math.random()*360},100%,70%)`;
+        c.style.left = Math.random() * 100 + 'vw';
+        c.style.top = '-10px';
+        c.style.borderRadius = '50%';
+        c.style.animation = 'fall 3s linear';
+        document.body.appendChild(c);
+        setTimeout(() => c.remove(), 3000);
+      }
+    }
+  </script>
+
+</body>
+</html>
